@@ -138,7 +138,7 @@ module.exports.createOrder = async (req, res) => {
   try {
     const product = await productModel.findById(req.params.id);
     const option = {
-      amount: product.price * 100,
+      amount: product.amount * 100,
       currency: "INR",
       receipt: product._id,
     };
@@ -151,7 +151,7 @@ module.exports.createOrder = async (req, res) => {
 
     const payment = await paymentModel.create({
       orderId: order.id,
-      amount: product.price,
+      amount: product.amount,
       currency: "INR",
       status: "pending",
     });
